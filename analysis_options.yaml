@@ -1,0 +1,25 @@
+
+include: package:lints/recommended.yaml
+# Uncomment the following section to specify additional rules.
+
+linter:
+  rules:
+    - camel_case_types
+    - avoid_relative_lib_imports
+    - curly_braces_in_flow_control_structures
+    - file_names
+    - await_only_futures
+    - directives_ordering
+    - empty_constructor_bodies
+    - eol_at_end_of_file
+    - join_return_with_assignment
+
+# analyzer:
+#   exclude:
+#     - path/to/excluded/files/**
+
+# For more information about the core and recommended set of lints, see
+# https://dart.dev/go/core-lints
+
+# For additional information about configuring this file, see
+# https://dart.dev/guides/language/analysis-options
