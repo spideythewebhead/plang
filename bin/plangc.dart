@@ -48,7 +48,7 @@ void main(List<String> arguments) async {
         visited.add(filePath);
 
         final PlangScanner scanner =
-            PlangScanner(File(filePath).readAsStringSync());
+            PlangScanner(File(filePath).readAsStringSync(), filePath: filePath);
         final PlangParser parser =
             PlangParser(scanner.scan(), filePath: filePath);
 

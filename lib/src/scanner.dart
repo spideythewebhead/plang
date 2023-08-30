@@ -1,5 +1,4 @@
-import 'package:plang/src/token.dart';
-import 'package:plang/src/token_type.dart';
+import 'package:plang/plang.dart';
 
 final Map<String, TokenType> _keywords = <String, TokenType>{
   'true': TokenType.boolean,
@@ -24,9 +23,13 @@ final Map<String, TokenType> _keywords = <String, TokenType>{
 };
 
 class PlangScanner {
-  PlangScanner(this.source);
+  PlangScanner(
+    this.source, {
+    this.filePath,
+  });
 
   final String source;
+  final String? filePath;
 
   int _start = 0;
   int _offset = 0;
@@ -55,7 +58,6 @@ class PlangScanner {
           tokens.add(_tokenizeString());
           break;
         case '\n':
-        case '\r\n':
           _advance();
           _line += 1;
           _column = 0;
@@ -92,8 +94,7 @@ class PlangScanner {
             while (_hasMoreToScan() && !_match('\n')) {
               _advance();
             }
-            if (_peek(offset: -1) == '\n' ||
-                _peek(offset: -2) == '\r' && _peek(offset: -2) == '\n') {
+            if (_peek(offset: -1) == '\n') {
               _line += 1;
               _column = 0;
             }
@@ -190,6 +191,16 @@ class PlangScanner {
         case ':':
           _advance();
           tokens.add(_createToken(TokenType.colon, lexeme: ':'));
+        case '\r':
+          _advance();
+          break;
+        default:
+          throw ScannerException(
+            message: 'Unexpected character "${_peek()}".',
+            line: _line,
+            column: _column,
+            filePath: filePath,
+          );
       }
     }
 
@@ -326,6 +337,7 @@ class PlangScanner {
 
     throw ScannerException(
       message: message,
+      filePath: filePath,
       line: _line,
       column: _column,
     );
@@ -339,17 +351,19 @@ class PlangScanner {
 class ScannerException implements Exception {
   ScannerException({
     required this.message,
+    required this.filePath,
     required this.line,
     required this.column,
   });
 
   final String message;
+  final String? filePath;
   final int line;
   final int column;
 
   @override
   String toString() {
-    return '$message Check at line $line and column $column. $line:$column.';
+    return '$message ${filePath ?? ''}:${1 + line}:${1 + column}.';
   }
 }
 
