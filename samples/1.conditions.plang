@@ -1,0 +1,25 @@
+include `core.plang`;
+
+var age: Int = 28;
+
+if (age >= 18) {
+    println(`Adult.`);
+}
+
+age = 11;
+
+if (age >= 18) {
+    println(`Adult`);
+} else {
+    println(`You are not adult yet.`);
+}
+
+age = 0;
+
+if (age >= 18) {
+    println(`Adult.`);
+} else if (age <= 0) {
+    println(`Your are not born yet.`);
+} else {
+    println(`You are not adult yet.`);
+}

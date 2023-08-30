@@ -1,0 +1,9 @@
+include `core.plang`;
+
+val speedOfLight: Int = 299792458;
+
+var carSpeed: Double = 0.0;
+carSpeed = 20.0;
+carSpeed = -40.0 - 1.3;
+
+println(carSpeed);

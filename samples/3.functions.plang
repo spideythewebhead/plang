@@ -1,0 +1,37 @@
+include `core.plang`;
+
+// Function that accepts no arguments and returns no value.
+fn sayMyName(): Void {
+    println(`pantelis`);
+}
+
+// Function that accept arguments and return values.
+fn fib(n: Int): Int {
+    if (n <= 1) {
+        return n;
+    }
+    return fib(n - 1) + fib(n - 2);
+}
+
+val fibOf11: Int = fib(11);
+println("Fibonacci value of 11: " + fibOf11);
+
+// Function that returns a function (closure)
+fn createCounter(): Object {
+    var count: Int = 0;
+    return fn counter(): Int {
+        count += 1;
+        return count;
+    };
+}
+
+val counter1: Object = createCounter();
+println(counter1());
+
+// A common pattern is to declare a main function and start your code from there.
+
+main();
+fn main(): Void {
+    println("Hi from main function");
+}
+

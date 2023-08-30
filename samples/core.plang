@@ -1,0 +1,59 @@
+external class Object {
+    val runtimeType: String;
+
+    external toString(): String;
+}
+
+external class Unknown {}
+
+external class Nil {}
+
+external class Void {}
+
+external class Number {}
+
+external class Int extends Number {
+    external clamp(): Int;
+
+    external plus(value: Number): Int;
+    external minus(value: Number): Int;
+}
+
+external class Double extends Number {
+    external plus(value: Number): Double;
+    external minus(value: Number): Double;
+}
+
+external class Bool {}
+
+external class String {
+    external length(): Int;
+    external substring(start: Int): String;
+    external charAt(index: Int): String;
+
+    external plus(value: Object): String;
+}
+
+external class List<T> {
+    external List();
+    external push(value: T): T;
+    external setAt(index: Int, value: T): T;
+    external elementAt(index: Int): T;
+    external length(): Int;
+    external firstWhere(predicate: Object): List<T>;
+    external filter(predicate: Object): List<T>;
+    external map<R>(mapper: Object): List<R>;
+}
+
+external class Map<K, V> {
+    external set(key: K, value: V): V;
+    external get(key: K): V;
+
+    external keys(): List<K>;
+    external values(): List<V>;
+
+    external length(): Int;
+}
+
+external fn print(data: Object): Void;
+external fn println(data: Object): Void;

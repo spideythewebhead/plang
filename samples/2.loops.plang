@@ -1,0 +1,5 @@
+include `core.plang`;
+
+for (var i: Int = 0; i < 5; i += 1) {
+    println("i is " + i);
+}

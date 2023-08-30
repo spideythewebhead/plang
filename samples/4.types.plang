@@ -1,0 +1,63 @@
+include `core.plang`;
+
+// Default types
+
+val integer: Int = 11;
+println("integer: " + integer);
+
+val floating: Double = -3.14;
+println("floating: " + floating);
+
+val boolTrue: Bool = true;
+println("bool: " + boolTrue);
+
+val boolFalse: Bool = false;
+
+println("bool: " + false);
+
+val myName: String = 'Pantelis';
+println("myName: " + myName);
+
+val listOfNames: List<String> = List<String>();
+listOfNames.push(myName);
+listOfNames.push(`Tsakoulis`);
+
+println("list of names: " + listOfNames);
+
+val idToName: Map<Int, String> = Map<Int, String>();
+idToName.set(integer, myName);
+idToName.set(0, `no name`);
+
+println("ids to names: " + idToName);
+
+// Custom type
+
+class Cat {
+    val name: String;
+
+    // This is a constructor
+    Cat(name: String) {
+        this.name = name;
+    }
+}
+
+val myCat: Cat = Cat("Alfredo");
+println(`My cat's name: ` + myCat.name);
+
+// Custom type with generic parameters
+
+class Box<T> {
+    val value: T;
+
+    Box(value: T) {
+        this.value = value;
+    }
+}
+
+var numberBox: Box<Number>;
+
+numberBox = Box<Int>(5);
+println(numberBox.value);
+
+numberBox = Box<Double>(3.13);
+println(numberBox.value);
